@@ -1,15 +1,26 @@
 package ltu;
 
-import static org.junit.Assert.*;
+import org.junit4.Assert.*;
+import static ltu.CalendarFactory.getCalendar;
 
-import org.junit.Test;
+import org.junit4.Test;
 
 public class PaymentTest
 {
     @Test
-    public void testSilly()
+    public static void testSilly()
     {
-        assertEquals(1, 1);
+        assertTrue(1==1);
     }
-
+    @Test
+    public static void testAge(){
+        PaymentImpl payment = new PaymentImpl(getCalendar());
+        int loan = payment.getMonthlyAmount("2010", 10000, 50, 50);
+        assertTrue(loan==0);
+    }
+    public static void main(String[] args){
+        testSilly();
+        testAge();
+    }
+    
 }
