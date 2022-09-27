@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import org.junit4.*;
+/* import org.junit4.*; */
 
 public class Main
 {

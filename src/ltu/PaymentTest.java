@@ -1,26 +1,31 @@
 package ltu;
 
-import org.junit4.Assert.*;
-import static ltu.CalendarFactory.getCalendar;
+import static org.junit.Assert.*;
 
-import org.junit4.Test;
+import java.io.IOException;
+
+import static ltu.CalendarFactory.getCalendar;
+import ltu.PaymentImpl;
+
+import org.junit.Test;
 
 public class PaymentTest
 {
     @Test
-    public static void testSilly()
+    public void testSilly()
     {
-        assertTrue(1==1);
+        assertEquals(1, 1);
     }
+
     @Test
-    public static void testAge(){
+    public void testAge() throws IOException{
         PaymentImpl payment = new PaymentImpl(getCalendar());
-        int loan = payment.getMonthlyAmount("2010", 10000, 50, 50);
+        int loan = payment.getMonthlyAmount("20100327", 10000, 50, 50);
         assertTrue(loan==0);
     }
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         testSilly();
         testAge();
-    }
+    } */
     
 }
