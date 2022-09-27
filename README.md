@@ -31,3 +31,5 @@ Requirement for passing the assignment:
 
 * You must achieve at least 80% test coverage for PaymentImpl.java
 * You must identify all the bugs that have been introduced in the updated PaymentImpl. There are a total of 6 errors, but these may of course be reported several times in your tests so identify the 6 different errors and link them to the ID in the functional requirements specification.
+
+susus amogus
