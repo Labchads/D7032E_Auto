@@ -18,28 +18,28 @@ public class PaymentTest
     }
 
     @Test
-    public void testAge() throws IOException{
+    public void test101() throws IOException{
         PaymentImpl payment = new PaymentImpl(getCalendar());
         int loan = payment.getMonthlyAmount("2003032756735", 0, 100, 100);
         assertEquals(0, loan);
     }
     
     @Test
-    public void testAge2() throws IOException{
+    public void test102() throws IOException{
     	PaymentImpl payment = new PaymentImpl(getCalendar());
         int loan = payment.getMonthlyAmount("1965032756735", 0, 100, 100);
         assertEquals(0, loan);
     }
     
     @Test
-    public void testAge3() throws IOException{
+    public void test103() throws IOException{
     	PaymentImpl payment = new PaymentImpl(getCalendar());
         int loan = payment.getMonthlyAmount("1975032756735", 0, 100, 100);
         assertEquals(2816, loan);
     }
     
     @Test
-    public void testHalfTime() throws IOException{
+    public void test201() throws IOException{
     	PaymentImpl payment = new PaymentImpl(getCalendar());
         int loan = payment.getMonthlyAmount("2000032756735", 0, 49, 100);
         int loan2 = payment.getMonthlyAmount("2000032756735", 0, 51, 100);
@@ -47,7 +47,7 @@ public class PaymentTest
     }
     
     @Test
-    public void testNotFullTime() throws IOException{
+    public void test202() throws IOException{
     	PaymentImpl payment = new PaymentImpl(getCalendar());
 //        int loan = payment.getMonthlyAmount("2000032756735", 0, 100, 100);
         int loan2 = payment.getMonthlyAmount("2000032756735", 0, 99, 100);
@@ -55,10 +55,37 @@ public class PaymentTest
     }
     
     @Test
-    public void testFullTime() throws IOException{
+    public void test203() throws IOException{
     	PaymentImpl payment = new PaymentImpl(getCalendar());
         int loan = payment.getMonthlyAmount("2000032756735", 0, 100, 100);
         assertTrue(loan == 7088 + 2816);
+    }
+    
+    //[ID: 301] A student who is studying full time or more is permitted to earn a maximum of 
+    //85 813SEK per year in order to receive any subsidiary or student loans.
+    @Test
+    public void test301() throws IOException{
+    	PaymentImpl payment = new PaymentImpl(getCalendar());
+        int loan = payment.getMonthlyAmount("2000032756735", 85814, 100, 100);
+        assertTrue(loan == 0);
+    }
+    
+    //[ID: 302] A student who is studying less than full time is allowed to earn a maximum of 
+    //128 722SEK per year in order to receive any subsidiary or student loans.
+    @Test
+    public void test302() throws IOException{
+    	PaymentImpl payment = new PaymentImpl(getCalendar());
+        int loan = payment.getMonthlyAmount("2000032756735", 128723, 99, 100);
+        assertTrue(loan == 0);
+    }
+    
+    //[ID: 401] A student must have completed at least 50% of previous studies in order to receive 
+    //any subsidiary or student loans.
+    @Test
+    public void test401() throws IOException{
+    	PaymentImpl payment = new PaymentImpl(getCalendar());
+        int loan = payment.getMonthlyAmount("2000032756735", 0, 100, 49);
+        assertTrue(loan == 0);
     }
     
     @Test
